@@ -1,6 +1,7 @@
 const auth = require('./google/auth/auth');
-const appScript = require('./google/app-script/app-script');
+const raids = require('./raids/raids');
+
 
 auth.authorize((auth) => {
-  appScript.call(auth);
+    raids.create(auth, 'bwl', 'fake-bwl', 'fake bwl');
 });

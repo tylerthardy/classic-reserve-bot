@@ -9,19 +9,22 @@ const {google} = require('googleapis');
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function call(auth) { // eslint-disable-line no-unused-vars
+function call(auth, functionName, parameters) { // eslint-disable-line no-unused-vars
     const scriptId = 'MoEoSbez4T1VfLvhtdpMkgKN5kDX4RwHg';
     const script = google.script('v1');
 
     // Make the API request. The request object is included here as 'resource'.
-    script.scripts.run({
+    const scriptOptions = {
         auth: auth,
         scriptId: scriptId,
         requestBody: {
-            function: 'createReserveForm',
-            parameters: ['sluggo']
+            function: functionName
         }
-    }, function (err, resp) {
+    };
+    if (parameters) {
+        scriptOptions.requestBody.parameters = parameters;
+    }
+    script.scripts.run(scriptOptions, function (err, resp) {
         if (err) {
             // The API encountered a problem before the script started executing.
             console.log('The API returned an error: ' + err);
