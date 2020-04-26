@@ -21,10 +21,11 @@ function callAppsScript(auth) { // eslint-disable-line no-unused-vars
     // Make the API request. The request object is included here as 'resource'.
     script.scripts.run({
       auth: auth,
-      resource: {
-        function: 'getFoldersUnderRoot',
-      },
       scriptId: scriptId,
+      requestBody: {
+        function: 'createReserveForm',
+        parameters: ['sluggo']
+      }
     }, function(err, resp) {
       if (err) {
         // The API encountered a problem before the script started executing.
@@ -54,15 +55,24 @@ function callAppsScript(auth) { // eslint-disable-line no-unused-vars
         // with String keys and values, and so the result is treated as a
         // Node.js object (folderSet).
         console.log(resp);
-        const folderSet = resp.data.response.result;
-        if (Object.keys(folderSet).length == 0) {
-          console.log('No folders returned!');
-        } else {
-          console.log('Folders under your root folder:');
-          Object.keys(folderSet).forEach(function(id) {
-            console.log('\t%s (%s)', folderSet[id], id);
-          });
+        if (resp.data.error) {
+          console.log(resp.data.error.details[0].errorMessage);
+          return;
         }
+        const result = resp.data.response.result;
+        printObject(result);
       }
     });
+  }
+
+  function printObject(object) {
+    if (Object.keys(object).length == 0) {
+      console.log('{}');
+    } else {
+      console.log('{');
+      Object.keys(object).forEach(function(id) {
+        console.log('    %s: %s', id, object[id]);
+      });
+      console.log('}');
+    }
   }
