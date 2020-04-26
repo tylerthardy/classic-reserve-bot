@@ -27,7 +27,7 @@ function call(auth) { // eslint-disable-line no-unused-vars
             console.log('The API returned an error: ' + err);
             return;
         }
-        if (resp.error) {
+        if (resp.data.error) {
             // The API executed, but the script returned an error.
 
             // Extract the first (and only) set of error details. The values of this
@@ -49,13 +49,7 @@ function call(auth) { // eslint-disable-line no-unused-vars
             // function returns. Here, the function returns an Apps Script Object
             // with String keys and values, and so the result is treated as a
             // Node.js object (folderSet).
-            console.log(resp);
-            if (resp.data.error) {
-                console.log(resp.data.error.details[0].errorMessage);
-                return;
-            }
-            const result = resp.data.response.result;
-            printObject(result);
+            printObject(resp.data.response.result);
         }
     });
 }
