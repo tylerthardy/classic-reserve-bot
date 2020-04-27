@@ -9,7 +9,7 @@ const {google} = require('googleapis');
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function call(auth, functionName, parameters) { // eslint-disable-line no-unused-vars
+function call(auth, functionName, parameters, callback) { // eslint-disable-line no-unused-vars
     const scriptId = 'MoEoSbez4T1VfLvhtdpMkgKN5kDX4RwHg';
     const script = google.script('v1');
 
@@ -53,6 +53,7 @@ function call(auth, functionName, parameters) { // eslint-disable-line no-unused
             // with String keys and values, and so the result is treated as a
             // Node.js object (folderSet).
             printObject(resp.data.response.result);
+            callback(resp.data.response.result);
         }
     });
 }
