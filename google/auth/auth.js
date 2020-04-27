@@ -4,9 +4,9 @@ const {google} = require('googleapis');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = [
-    'https://www.googleapis.com/auth/script.projects',
     'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/forms',
+    'https://www.googleapis.com/auth/spreadsheets',
     'email',
     'profile',
     'openid'
