@@ -36,7 +36,7 @@ function call(auth, functionName, parameters) { // eslint-disable-line no-unused
             // Extract the first (and only) set of error details. The values of this
             // object are the script's 'errorMessage' and 'errorType', and an array
             // of stack trace elements.
-            const error = resp.error.details[0];
+            const error = resp.data.error.details[0];
             console.log('Script error message: ' + error.errorMessage);
             console.log('Script error stacktrace:');
 
