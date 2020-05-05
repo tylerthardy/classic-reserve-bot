@@ -1,4 +1,4 @@
-module.exports = function (bot, msg) {
+module.exports = function (bot, db, msg) {
     if (!msg.content.startsWith('!')) {
         return;
     }
@@ -13,6 +13,7 @@ module.exports = function (bot, msg) {
         cmd.execute({
             msg: msg,
             bot: bot,
+            db: db,
             args: args
         });
     } catch (error) {

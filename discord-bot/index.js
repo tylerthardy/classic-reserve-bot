@@ -12,7 +12,7 @@ function initialize(callback) {
     });
 
     bot.on('ready', () => callback(bot));
-    bot.on('message', msg => handlers.message(bot, msg));
+    bot.on('message', msg => handlers.message(bot, db, msg));
 
     bot.login(TOKEN);
 }
