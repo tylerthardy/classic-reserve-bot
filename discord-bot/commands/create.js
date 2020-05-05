@@ -7,6 +7,11 @@ module.exports = {
     execute(input) {
         const msg = input.msg;
         const args = input.args;
+
+        if (!msg.member.hasPermission('ADMINISTRATOR')) {
+            throw 'You do not have permission to use this command';
+        }
+
         msg.delete();
         if (args.length !== 3) {
             msg.channel.send('specify all arguments');
