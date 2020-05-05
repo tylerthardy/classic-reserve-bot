@@ -10,13 +10,13 @@ module.exports = function (bot, msg) {
     
     try {
         const cmd = bot.commands.get(command);
-        if (cmd.needsClient) {
-            cmd.execute(msg, bot, args);
-        } else {
-            cmd.execute(msg, args);
-        }
+        cmd.execute({
+            msg: msg,
+            bot: bot,
+            args: args
+        });
     } catch (error) {
-        console.error(error);
-        msg.reply('there was an error trying to execute that command!');
+        const message = error.message ? error.message : error;
+        msg.reply('There was an error trying to execute that command:\n' + message);
     }
 }

@@ -4,7 +4,9 @@ const raids = require('../../raids/raids');
 module.exports = {
     name: 'create',
     description: 'Create!',
-    execute(msg, args) {
+    execute(input) {
+        const msg = input.msg;
+        const args = input.args;
         msg.delete();
         if (args.length !== 3) {
             msg.channel.send('specify all arguments');
