@@ -1,4 +1,4 @@
-const appScript = require('../google/app-script/app-script');
+const appScript = require('../google/app-script');
 const request = require('request');
 
 function create(auth, title, description, callback) {

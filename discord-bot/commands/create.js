@@ -1,4 +1,4 @@
-const auth = require('../../google/auth/auth');
+const auth = require('../../google/auth');
 const raids = require('../../raids/raids');
 
 module.exports = {
