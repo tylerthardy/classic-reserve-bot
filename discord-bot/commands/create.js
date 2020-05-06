@@ -19,7 +19,7 @@ module.exports = {
             return;
         }
 
-        db.schema.Guild.find({id: msg.guild.id}, (err, guilds) => {
+        db.query('Guild', {id: msg.guild.id}, (err, guilds) => {
             // error
             if (err) {
                 throw err;
