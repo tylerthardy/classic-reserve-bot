@@ -4,7 +4,7 @@ const schemas = require('../schemas');
 const schema = {};
 
 function connect(callback) {
-    mongoose.connect(process.env.DB_URL, {useNewUrlParser: true});
+    mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true});
     mongoose.connection.on('error', () => console.error.log(console, 'mongodb connection error'));
     mongoose.connection.once('open', () => {
         initializeSchemas();
