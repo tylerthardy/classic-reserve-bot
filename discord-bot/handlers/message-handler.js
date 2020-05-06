@@ -1,4 +1,6 @@
-module.exports = function (bot, db, msg) {
+const db = require('../../db');
+
+module.exports = function (bot, msg) {
     if (!msg.content.startsWith('!')) {
         return;
     }

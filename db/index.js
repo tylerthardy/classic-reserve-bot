@@ -3,9 +3,9 @@ const schemas = require('./schemas');
 
 const schema = {};
 
-function connect(callback, err) {
+function connect(callback) {
     mongoose.connect(process.env.DB_URL, {useNewUrlParser: true});
-    mongoose.connection.on('error', err);
+    mongoose.connection.on('error', () => console.error.log(console, 'mongodb connection error'));
     mongoose.connection.once('open', () => {
         initializeSchemas();
         callback();
@@ -13,10 +13,11 @@ function connect(callback, err) {
 }
 
 function initializeSchemas() {
-    schema.Guild = mongoose.model('Guild', new mongoose.Schema(schemas.guild));
+    schema.Guild = mongoose.model('Guild', new mongoose.Schema(schemas.guild, {collection: 'Guild'}));
 }
 
 module.exports = {
     connect: connect,
+    connection: mongoose.connection,
     schema: schema
 }
